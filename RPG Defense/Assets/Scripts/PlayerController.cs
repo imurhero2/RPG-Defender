@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
 	public float speed = 10f;
+    public float sprintSpeed = 10f;
 
 	// Use this for initialization
 	void Start () {
@@ -17,5 +18,16 @@ public class PlayerController : MonoBehaviour {
         float v = Input.GetAxis("Vertical");
 
         GetComponent<Rigidbody2D>().velocity = new Vector2(h * speed * Time.deltaTime, v * speed * Time.deltaTime);
-		}
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            speed = sprintSpeed;
+        }
+
+        if(Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            speed = 200;
+        }
+
+    }
 	}
